@@ -2,8 +2,8 @@
 
 angular.module('sds.search', [])
     .controller('sdsSearchController', ["$scope", function($scope){
-
         $scope.hasNotSelected = true;
+        $scope.formData = {};
 
         // Helper function to display JavaScript value on HTML page.
         function showResponse(response) {
@@ -38,6 +38,11 @@ angular.module('sds.search', [])
         // Called automatically with the response of the YouTube API request.
         function onSearchResponse(response) {
             showResponse(response);
+        }
+
+        $scope.submit = function() {
+            console.log("Successful selection! Your selection is video ID:");
+            console.log($scope.formData.selected);
         }
     }])
     .directive('sdsResultDisplayer', [function(){

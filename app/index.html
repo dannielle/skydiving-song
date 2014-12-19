@@ -22,19 +22,18 @@
   <![endif]-->
 
   <sds-result-displayer></sds-result-displayer>
-  <!--<ul>-->
-    <!--<li ng-repeat="item in videoList">-->
-      <!--<video-selection video="{{item.id.videoId}}"></video-selection>-->
-    <!--</li>-->
-  <!--</ul>-->
-  <!--<button ng-show="hasSearched" ng-disabled="hasNotSelected">Select</button>-->
-  <form ng-show="hasSearched">
+
+  <form ng-show="hasSearched" ng-submit="submit()">
     <div ng-repeat="item in videoList">
-      <input type="radio" ng-model="selected" ng-value="item.id.video" name="whocares" >
+      <input type="radio" ng-model="$parent.formData.selected" ng-value="item.id.videoId"
+             ng-required="!$parent.formData.selected" name="whocares" >
       <video-selection video="{{item.id.videoId}}"></video-selection>
     </div>
 
     <input type="submit" value="Select">
+    <div>
+      The selected video id is {{formData.selected}} .
+    </div>
   </form>
 
   <!-- In production use:
