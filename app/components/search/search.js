@@ -43,6 +43,12 @@ angular.module('sds.search', [])
         $scope.submit = function() {
             console.log("Successful selection! Your selection is video ID:");
             console.log($scope.formData.selected);
+            $(function(){
+                var url = $scope.formData.selected;
+                var string = '<div id="bgndVideo" class="player" data-property="{videoURL:\'' + url + '\',containment:\'body\',autoPlay:true, mute:false, startAt:0, opacity:1}"></div>';
+                $(".player-container").append(string);
+                $(".player").YTPlayer();
+            })
         }
     }])
     .directive('sdsResultDisplayer', [function(){
