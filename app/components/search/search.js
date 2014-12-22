@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sds.search', [])
-    .controller('sdsSearchController', ["$scope", function($scope){
+    .controller('sdsSearchController', ["$scope", "$location", function($scope, $location){
         $scope.hasNotSelected = true;
         $scope.formData = {};
 
@@ -13,13 +13,6 @@ angular.module('sds.search', [])
                 $scope.videoList.push(response["items"][i])
             }
             $scope.$apply();
-            //var firstId = response["items"][0]["id"]["videoId"];
-            //for(var i = 0; i < response["items"].length; i++){
-            //    var prefix = '<iframe width="560" height="315" src="';
-            //    var suffix = '" frameborder="0" allowfullscreen></iframe>';
-            //    var ytlink = 'https://www.youtube.com/embed/' + response["items"][i]["id"]["videoId"];
-            //    document.getElementById('response').innerHTML += prefix + ytlink + suffix + "<br/>";
-            //}
         }
 
         $scope.search = function() {
@@ -43,12 +36,8 @@ angular.module('sds.search', [])
         $scope.submit = function() {
             console.log("Successful selection! Your selection is video ID:");
             console.log($scope.formData.selected);
-            $(function(){
-                var url = $scope.formData.selected;
-                var string = '<div id="bgndVideo" class="player" data-property="{videoURL:\'' + url + '\',containment:\'body\',autoPlay:true, mute:false, startAt:0, opacity:1}"></div>';
-                $(".player-container").append(string);
-                $(".player").YTPlayer();
-            })
+            var redirect = "/falling/" + $scope.formData.selected;
+            $location.path(redirect);
         }
     }])
     .directive('sdsResultDisplayer', [function(){

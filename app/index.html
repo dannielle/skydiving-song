@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="sdsApp">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,33 +12,6 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script src="loadSearch.js"></script>
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
-</head>
-<body ng-controller="sdsSearchController">
-  <div id="wrapper">
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <div class="player-container">
-    </div>
-
-    <sds-result-displayer></sds-result-displayer>
-
-    <form ng-show="hasSearched" ng-submit="submit()">
-      <div ng-repeat="item in videoList">
-        <input type="radio" ng-model="$parent.formData.selected" ng-value="item.id.videoId"
-               ng-required="!$parent.formData.selected" name="whocares" >
-        <video-selection video="{{item.id.videoId}}"></video-selection>
-      </div>
-
-      <input type="submit" value="Select">
-      <div>
-        The selected video id is {{formData.selected}} .
-      </div>
-    </form>
-
-  </div>
-
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -53,8 +23,12 @@
   <script src="components/filters/trustAsResource.js"></script>
   <script src="components/search/search.js"></script>
   <script src="components/search/videoSelection.js"></script>
+  <script src="components/falling/falling.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+</head>
+<body>
+  <div ng-view></div>
 </body>
 </html>

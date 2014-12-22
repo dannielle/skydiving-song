@@ -1,0 +1,17 @@
+<div class="player-container">
+</div>
+
+<sds-result-displayer></sds-result-displayer>
+
+<form ng-show="hasSearched" ng-submit="submit()">
+    <div ng-repeat="item in videoList">
+        <input type="radio" ng-model="$parent.formData.selected" ng-value="item.id.videoId"
+               ng-required="!$parent.formData.selected" name="whocares" >
+        <video-selection video="{{item.id.videoId}}"></video-selection>
+    </div>
+
+    <input type="submit" value="Select" href="/{{formData.selected}}">
+    <div>
+        The selected video id is {{formData.selected}} .
+    </div>
+</form>

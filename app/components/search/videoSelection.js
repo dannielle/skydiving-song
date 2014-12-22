@@ -18,7 +18,6 @@ angular.module('sds.search')
             restrict: 'E',
             template:
             '<div>' +
-            //'<div ng-click="toggleSelect()" ng-class="{selected: isSelected}">' +
                 '<div>In the directive, {{videoId}}</div>' +
                 '<div>In the embed url, {{embedUrl}}</div>' +
 
