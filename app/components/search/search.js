@@ -45,9 +45,9 @@ angular.module('sds.search', [])
             restrict: "E",
             controller: "sdsSearchController",
             template:
-                '<input type="text" ng-model="artist" placeholder="Artist Name" required />' +
-                '<input type="text" ng-model="track" placeholder="Song Title" required />' +
-                '<button ng-click="search()" class="search-button">Search</button>' +
+                '<input type="text" ng-model="artist" placeholder="Artist Name" />' +
+                '<input type="text" ng-model="track" placeholder="Song Title" />' +
+                '<input type="button" ng-click="search()" class="search-button" value="Search" />' +
                 '<h3 class="input-results" ng-show="!hasSearched">{{artist}} - {{track}}</h3>' +
                 '<div id="response"> </div>'
         };

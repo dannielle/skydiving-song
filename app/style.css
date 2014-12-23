@@ -47,7 +47,8 @@ input {
 
 h1 { font-size: 3em; }
 h2 { font-size: 2em; }
-h1, p {
+sub {display:block;}
+sub, p {
     margin-bottom: 350px;
 }
 
@@ -92,6 +93,10 @@ h3, .selection-prompt-container > h4 {
 .select-button {
     float: right;
     font-size: .6em;
+}
+
+.video-selection-container {
+    margin-bottom: 15px;
 }
 
 .video-selection-radio {
