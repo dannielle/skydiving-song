@@ -47,8 +47,8 @@ angular.module('sds.search', [])
             template:
                 '<input type="text" ng-model="artist" placeholder="Artist Name" required />' +
                 '<input type="text" ng-model="track" placeholder="Song Title" required />' +
-                '{{artist}} - {{track}}' +
-                '<button ng-click="search()">Search</button>' +
+                '<button ng-click="search()" class="search-button">Search</button>' +
+                '<h3 class="input-results" ng-show="!hasSearched">{{artist}} - {{track}}</h3>' +
                 '<div id="response"> </div>'
         };
     }]);

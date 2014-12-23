@@ -9,7 +9,7 @@ angular.module('sds.search')
             $scope.isSelected = !$scope.isSelected;
         }
 
-        $scope.embedUrl = "http://www.youtube.com/embed/" + $scope.videoId;
+        $scope.embedUrl = "https://www.youtube.com/embed/" + $scope.videoId;
     }])
 
     .directive('videoSelection', [function(){
@@ -17,14 +17,13 @@ angular.module('sds.search')
             controller: 'videoSelectionCtrl',
             restrict: 'E',
             template:
-            '<div>' +
-                '<div>In the directive, {{videoId}}</div>' +
-                '<div>In the embed url, {{embedUrl}}</div>' +
-
-                '<iframe src="{{embedUrl | trustAsResourceUrl}}"></iframe>' +
-            '</div>',
+            '<span>' +
+                //'<iframe src="{{embedUrl | trustAsResourceUrl}}"></iframe>' +
+                '<img src="{{thumbnailUrl}}" />'+
+            '</span>',
             scope: {
-                videoId : '@video'
+                videoId : '@video',
+                thumbnailUrl : '@thumbnail'
             }
         }
     }]);
