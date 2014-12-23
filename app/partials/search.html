@@ -3,38 +3,38 @@
 
 <h1>No Parachute Song</h1>
 
-<p>
+<p class="transparent">
     What is your name?
     <span class="intro-input">
         <input type="text" ng-model="user.name" name="userName" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" />
     </span>
 </p>
 
-<p>{{user.name}}<span ng-if="user.name">.</span></p>
+<p class="transparent">{{user.name}}<span ng-if="user.name">.</span></p>
 
-<p>You are skydiving right now.</p>
+<p class="transparent">You are skydiving right now.</p>
 
-<p>
-    {{user.name}}, what is something you love?
+<p class="transparent">
+    {{user.name}}<span ng-if="user.name">, </span>what is something you love?
     <span class="intro-input">
         <input type="text" ng-model="user.love" name="userLove" nng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" /></p>
     </span>
 </p>
 
-<p>{{user.love}}<span ng-if="user.love">.</span></p>
+<p class="transparent">{{user.love}}<span ng-if="user.love">.</span></p>
 
-<p>Now you notice that you do not have a parachute.</p>
+<p id="no-parachute" class="transparent">Now you notice that you do not have a parachute.</p>
 
-<p>You are alone.</p>
+<p class="transparent">You are alone.</p>
 
-<p>you are 5000 ft from the ground.</p>
+<p class="transparent">you are 5000 ft from the ground.</p>
 
-<p>you will die.</p>
+<p class="transparent">you will die.</p>
 
-<p>you get to play one song on repeat for the next 300 seconds before you die.</p>
+<p class="transparent">you get to play one song on repeat for the next 300 seconds before you die.</p>
 
 
-<div class="search-container">
+<div class="search-container" class="transparent">
     <h2>What song do you play?</h2>
     <sds-result-displayer></sds-result-displayer>
 </div>
