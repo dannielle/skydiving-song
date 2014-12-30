@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $(document).scroll(function() {
         if (isElementInViewport($("#no-parachute"))) {
-            $(".skydiver-with-plane").addClass("-without-plane");
+            $("#skydiver-with-plane").addClass("-without-plane");
         }
 
         $('.transparent').each( function(i) {

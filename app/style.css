@@ -106,3 +106,9 @@ h3, .selection-prompt-container > h4 {
 footer {
     margin: 20px 0px;
 }
+
+.falling > p {
+    background-color: rgba(55, 71, 79, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+}

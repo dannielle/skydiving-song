@@ -15,6 +15,7 @@
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="js/YTPlayer/inc/jquery.mb.YTPlayer.js"></script>
@@ -29,8 +30,8 @@
 <body>
   <div class="content-container">
     <div id="skydiver">
-      <img src="assets/skydiver%20with%20plane.svg" class="skydiver-with-plane" />
-      <img src="assets/skydiver%20without%20plane.svg" />
+      <img src="assets/skydiverwithplane.svg" id="skydiver-with-plane" />
+      <img src="assets/skydiverwithoutplane.svg" />
     </div>
     <div class="content" ng-view></div>
   </div>
