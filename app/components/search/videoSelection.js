@@ -5,11 +5,8 @@ angular.module('sds.search')
         $scope.isSelected = false;
 
         $scope.toggleSelect = function() {
-            console.log("in toggleselect")
             $scope.isSelected = !$scope.isSelected;
         }
-
-        $scope.embedUrl = "https://www.youtube.com/embed/" + $scope.videoId;
     }])
 
     .directive('videoSelection', [function(){
