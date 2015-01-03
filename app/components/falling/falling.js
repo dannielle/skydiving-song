@@ -10,13 +10,11 @@ angular.module('sds.falling', [])
 
         //GET the list of video IDs, the names, and other information
         //iterate through the result list
-            //make the info array
+            //make the puddle array and save it into $scope.puddleList
             // [{videoId: foo, name: bar, passion: baz}, {}]
-            //add to the video array
+            //add to the videos array
         //end iterate
 
-        //POST to save video ID, name, and info
-        
         //play the video array
         jQuery("#player-container").YTPlaylist(videos, false);
 

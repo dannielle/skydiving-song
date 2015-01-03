@@ -18,7 +18,6 @@ angular.module('sds.search')
             restrict: 'E',
             template:
             '<span>' +
-                //'<iframe src="{{embedUrl | trustAsResourceUrl}}"></iframe>' +
                 '<img src="{{thumbnailUrl}}" />'+
             '</span>',
             scope: {

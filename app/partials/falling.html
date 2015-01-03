@@ -6,4 +6,9 @@
     <p>I love you.</p>
     <p>Goodbye!</p>
     <p>Here's what others listened to in their last moments:</p>
+    <div>
+        <span ng-repeat="item in puddleList" >
+            <puddle video-id="item.videoId" name="item.name"></puddle>
+        </span>
+    </div>
 </div>
