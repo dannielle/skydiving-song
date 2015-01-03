@@ -34,7 +34,11 @@
 
 <div class="search-container" class="transparent">
     <h2>What song do you play?</h2>
-    <sds-result-displayer></sds-result-displayer>
+    <input type="text" ng-model="artist" placeholder="Artist Name" />
+    <input type="text" ng-model="track" placeholder="Song Title" />
+    <input type="button" ng-click="search()" class="search-button" value="Search" />
+    <h3 class="input-results" ng-show="!hasSearched">{{artist}} - {{track}}</h3>
+    <div id="response"> </div>
 </div>
 
 <form ng-show="hasSearched" ng-submit="submit()">

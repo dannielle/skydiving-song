@@ -3,7 +3,7 @@ angular.module('sds.falling', [])
         $scope.videoId = $routeParams.videoId;
         var url = $scope.videoId;
         //var string = '<div id="bgndVideo" class="player" data-property="{videoURL:\'' + url + '\',containment:\'body\',autoPlay:true, mute:false, startAt:0, opacity:0.5}"></div>';
-        $("#player-container").append(string);
+        //$("#player-container").append(string);
         //$(".player").YTPlayer();
 
         var videos = [{videoURL: url,containment:'body',autoPlay:true, mute:false, startAt:0,opacity:1, loop:false, ratio:"4/3", addRaster:true}];
