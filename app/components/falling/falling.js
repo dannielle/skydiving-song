@@ -41,6 +41,13 @@ angular.module('sds.falling', [])
             $('#loading-warning').fadeOut();
             $("#skydiver-with-plane").addClass("-without-plane");
         }, 3000 );
+
+        $scope.playNext = function(){
+            jQuery('#player-container').playNext();
+        }
+        $scope.playPrevious = function(){
+            jQuery('#player-container').playPrev();
+        }
     }])
     .directive('puddle', [function(){
         return {
@@ -54,6 +61,4 @@ angular.module('sds.falling', [])
               '<p>name: {{name}} videoId: {{videoId}}</p>' +
               '</div>'
       };
-}])
-
-;
+}]);
