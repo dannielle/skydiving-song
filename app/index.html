@@ -14,12 +14,14 @@
   <script src="loadSearch.js"></script>
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular/angular-animate.min.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="js/YTPlayer/inc/jquery.mb.YTPlayer.js"></script>
-  <script src="js/skydiver.js"></script>
+  <!--<script src="js/skydiver.js"></script>-->
   <script src="app.js"></script>
   <script src="components/filters/trustAsResource.js"></script>
   <script src="components/search/search.js"></script>
@@ -28,11 +30,7 @@
 </head>
 <body>
   <div class="content-container">
-    <div id="skydiver">
-      <img src="assets/skydiverwithplane.svg" id="skydiver-with-plane" />
-      <img src="assets/skydiverwithoutplane.svg" />
-    </div>
-    <div class="content" ng-view></div>
+  <div class="content" ng-view></div>
   </div>
 </body>
 

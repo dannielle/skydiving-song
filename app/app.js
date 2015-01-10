@@ -5,7 +5,8 @@ angular.module('sdsApp', [
   'ngRoute',
   'sds.search',
   'sds.falling',
-  'filters-module'
+  'filters-module',
+  'firebase'//,  'appControllers'
 ])
 .config(["$routeProvider", function($routeProvider) {
   $routeProvider.
@@ -13,7 +14,7 @@ angular.module('sdsApp', [
         templateUrl: 'partials/search.html',
         controller: 'sdsSearchController'
       }).
-      when("/falling/:videoId", {
+      when("/falling/:videoId/", {
         templateUrl: "partials/falling.html",
         controller: 'fallingController'
       }).

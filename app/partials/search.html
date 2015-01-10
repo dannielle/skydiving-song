@@ -1,54 +1,103 @@
+<script src="js/skydiver.js"></script>
+
 <h1>No Parachute Song</h1>
 <sub>Inspired by Aidan Arrowood</sub>
+<div class="searchPartial">
 
-<p class="transparent">
-    What is your name?
-    <span class="intro-input">
-        <input type="text" ng-model="user.name" name="userName" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" />
-    </span>
-</p>
+    <div id="skydiver">
+        <img src="assets/skydiverwithplane.svg" id="skydiver-with-plane" />
+        <img src="assets/skydiverwithoutplane.svg" />
+    </div>
 
-<p class="transparent">{{user.name}}<span ng-if="user.name">.</span></p>
+    <div class="main-container">
+        <p class="transparent">
+            What is your name?
+            <span class="intro-input">
+                <input type="text" ng-model="user.name" name="userName" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" />
+            </span>
+        </p>
 
-<p class="transparent">You are skydiving right now.</p>
+        <p class="transparent">{{user.name}}<span ng-if="user.name">.</span></p>
 
-<p class="transparent">
-    {{user.name}}<span ng-if="user.name">, </span>what is something you love?
-    <span class="intro-input">
-        <input type="text" ng-model="user.love" name="userLove" nng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" /></p>
-    </span>
-</p>
+        <p class="transparent">You are skydiving right now.</p>
 
-<p class="transparent">{{user.love}}<span ng-if="user.love">.</span></p>
+        <p class="transparent">
+            {{user.name}}<span ng-if="user.name">, </span>what is something you love?
+            <span class="intro-input">
+                <input type="text" ng-model="user.love" name="userLove" nng-model-options="{ updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0} }" /></p>
+            </span>
+        </p>
 
-<p id="no-parachute" class="transparent">Now you notice that you do not have a parachute.</p>
+        <p class="transparent">{{user.love}}<span ng-if="user.love">.</span></p>
 
-<p class="transparent">You are alone.</p>
+        <p id="no-parachute" class="transparent">Now you notice that you do not have a parachute.</p>
 
-<p class="transparent">you are 5000 ft from the ground.</p>
+        <p class="transparent">You are alone.</p>
 
-<p class="transparent">you will die.</p>
+        <p class="transparent">you are 5000 ft from the ground.</p>
 
-<p class="transparent">you get to play one song on repeat for the next 300 seconds before you die.</p>
+        <p class="transparent">you will die.</p>
+
+        <p class="transparent">you get to play one song on repeat for the next 300 seconds before you die.</p>
 
 
-<div class="search-container" class="transparent">
-    <h2>What song do you play?</h2>
-    <input type="text" ng-model="artist" placeholder="Artist Name" />
-    <input type="text" ng-model="track" placeholder="Song Title" />
-    <input type="button" ng-click="search()" class="search-button" value="Search" />
-    <h3 class="input-results" ng-show="!hasSearched">{{artist}} - {{track}}</h3>
-    <div id="response"> </div>
+        <div class="search-container" class="transparent">
+            <h2>What song do you play?</h2>
+            <input type="text" ng-model="artist" placeholder="Artist Name" />
+            <input type="text" ng-model="track" placeholder="Song Title" />
+            <input type="button" ng-click="search()" class="search-button" value="Search" />
+            <h3 class="input-results" ng-show="!hasSearched">{{artist}} - {{track}}</h3>
+            <div id="response"> </div>
+        </div>
+
+        <form ng-show="hasSearched" ng-submit="submit()">
+            <div class="selection-prompt-container">
+                <h4>Pick the most appropriate video for {{artist}} - {{track}}</h4>
+                <input type="submit" value="Select" href="/{{formData.selected}}" class="select-button">
+            </div>
+            <div ng-repeat="item in videoList" class="video-selection-container">
+                <input type="radio" ng-model="$parent.formData.selected" ng-value="item"
+                       ng-required="!$parent.formData.selected" name="whocares" >
+                <video-selection video="{{item.id.videoId}}" thumbnail="{{item.snippet.thumbnails.medium.url}}"></video-selection>
+            </div>
+        </form>
+    </div>
 </div>
 
-<form ng-show="hasSearched" ng-submit="submit()">
-    <div class="selection-prompt-container">
-        <h4>Pick the most appropriate video for {{artist}} - {{track}}</h4>
-        <input type="submit" value="Select" href="/{{formData.selected}}" class="select-button">
-    </div>
-    <div ng-repeat="item in videoList" class="video-selection-container">
-        <input type="radio" ng-model="$parent.formData.selected" ng-value="item.id.videoId"
-               ng-required="!$parent.formData.selected" name="whocares" >
-        <video-selection video="{{item.id.videoId}}" thumbnail="{{item.snippet.thumbnails.medium.url}}"></video-selection>
-    </div>
-</form>
+<script type="javascript">
+    $(document).ready(function(){
+
+        $(document).scroll(function() {
+            if (isElementInViewport($("#no-parachute"))) {
+                $("#skydiver-with-plane").addClass("-without-plane");
+            }
+
+            $('.transparent').each( function(i) {
+
+                var bottom_of_object = $(this).position().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                if (bottom_of_window > bottom_of_object) {
+                    $(this).animate({'opacity': '1'}, 1000);
+                }
+            });
+        });
+
+
+        function isElementInViewport (el) {
+            //special bonus for those using jQuery
+            if (typeof jQuery === "function" && el instanceof jQuery) {
+                el = el[0];
+            }
+
+            var rect = el.getBoundingClientRect();
+
+            return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+            );
+        }
+    });
+</script>

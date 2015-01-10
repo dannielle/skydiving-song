@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sds.search', [])
-    .controller('sdsSearchController', ["$scope", "$location", function($scope, $location){
+    .controller('sdsSearchController', ["$scope", "$location", "$firebase", function($scope, $location, $firebase){
         $scope.hasNotSelected = true;
         $scope.formData = {};
 
@@ -33,10 +33,64 @@ angular.module('sds.search', [])
             showResponse(response);
         }
 
+        var ref = new Firebase("https://noparachute.firebaseio.com/playlist");
+
         $scope.submit = function() {
             console.log("Successful selection! Your selection is video ID:");
             console.log($scope.formData.selected);
-            var redirect = "/falling/" + $scope.formData.selected;
+
+            var ref = new Firebase("https://noparachute.firebaseio.com/playlist");
+
+            // GET MESSAGES AS AN ARRAY
+            $scope.playlist = $firebase(ref).$asArray();
+            // Add Name, Passion and youtube song id to database
+            console.log("Connection established");
+            $scope.$parent.newPuddle = {
+                name: $scope.user.name,
+                love: $scope.user.love,
+                videoTitle: $scope.formData.selected.snippet.title,
+                videoThumbnail: $scope.formData.selected.snippet.thumbnails.medium.url,
+                videoId: $scope.formData.selected.id.videoId
+            }
+            $scope.playlist.$add($scope.$parent.newPuddle);
+
+            var redirect = "/falling/" + $scope.formData.selected.id.videoId;
             $location.path(redirect);
         }
-    }]);
+
+
+        /**Skydiver**/
+        $(document).scroll(function() {
+            if (isElementInViewport($("#no-parachute"))) {
+                $("#skydiver-with-plane").addClass("-without-plane");
+            }
+
+            $('.transparent').each( function(i) {
+
+                var bottom_of_object = $(this).position().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                if (bottom_of_window > bottom_of_object) {
+                    $(this).animate({'opacity': '1'}, 1000);
+                }
+            });
+        });
+
+
+        function isElementInViewport (el) {
+            //special bonus for those using jQuery
+            if (typeof jQuery === "function" && el instanceof jQuery) {
+                el = el[0];
+            }
+
+            var rect = el.getBoundingClientRect();
+
+            return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+            );
+        }
+
+}]);
