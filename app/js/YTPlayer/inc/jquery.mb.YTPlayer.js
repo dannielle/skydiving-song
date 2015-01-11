@@ -647,7 +647,7 @@ function onYouTubePlayerAPIReady() {
 			});
 		},
 		//Aidan added this function
-		YTPlaylist: function (videos, shuffle, callback, index) {
+		YTPlaylistReverse: function (videos, shuffle, callback, index) {
 			var YTPlayer = this.get(0);
 
 			YTPlayer.isPlayList = true;
@@ -1223,6 +1223,7 @@ function onYouTubePlayerAPIReady() {
 	/*Exposed method for external use*/
 	jQuery.fn.YTPlayer = jQuery.mbYTPlayer.buildPlayer;
 	jQuery.fn.YTPlaylist = jQuery.mbYTPlayer.YTPlaylist;
+	jQuery.fn.YTPlaylistReverse = jQuery.mbYTPlayer.YTPlaylistReverse;
 	jQuery.fn.playNext = jQuery.mbYTPlayer.playNext;
 	jQuery.fn.playPrev = jQuery.mbYTPlayer.playPrev;
 	jQuery.fn.changeMovie = jQuery.mbYTPlayer.changeMovie;

@@ -99,7 +99,7 @@ angular.module('sds.falling', [])
             var videos = createVideos(puddlelist);
             console.log("videos -createVideosPlay()");
             console.log(videos);
-            $scope.player.YTPlaylist(videos, false, function(){}, videos.length-1);
+            $scope.player.YTPlaylistReverse(videos, false, function(){}, videos.length-1);
             $scope.player.setVideosIndex($scope.player.getVideos().length-1);
             console.log("videos YTPlaylist)");
             console.log($scope.player);
