@@ -53,6 +53,8 @@ angular.module('sds.search', [])
                 videoId: $scope.formData.selected.id.videoId
             }
             $scope.playlist.$add($scope.$parent.newPuddle);
+            console.log("added to $scope.playlist");
+            console.log($scope.playlist);
 
             var redirect = "/falling/" + $scope.formData.selected.id.videoId;
             $location.path(redirect);

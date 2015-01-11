@@ -595,10 +595,22 @@ function onYouTubePlayerAPIReady() {
 			var YTPlayer = this.get(0);
 			return YTPlayer.videoData;
 		},
+		getVideos: function () {
+			var YTPlayer = this.get(0);
+			return YTPlayer.videos;
+		},
 
 		getVideoID: function () {
 			var YTPlayer = this.get(0);
 			return YTPlayer.videoID || false;
+		},
+		setVideos: function(newVideos) {
+			var YTPlayer = this.get(0);
+			YTPlayer.videos = newVideos;
+		},
+		setVideosIndex: function(index) {
+			var YTPlayer = this.get(0);
+			YTPlayer.videoCounter = index;
 		},
 
 		setVideoQuality: function (quality) {
@@ -634,11 +646,38 @@ function onYouTubePlayerAPIReady() {
 				jQuery(YTPlayer).playNext();
 			});
 		},
+		//Aidan added this function
+		YTPlaylist: function (videos, shuffle, callback, index) {
+			var YTPlayer = this.get(0);
+
+			YTPlayer.isPlayList = true;
+
+			if (shuffle)
+				videos = jQuery.shuffle(videos);
+
+			if (!YTPlayer.videoID) {
+				YTPlayer.videos = videos;
+				YTPlayer.videoCounter = index;
+				YTPlayer.videoLength = videos.length;
+
+				jQuery(YTPlayer).data("property", videos[index]);
+				jQuery(YTPlayer).mb_YTPlayer();
+			}
+
+			if (typeof callback == "function")
+				jQuery(YTPlayer).on("YTPChanged", function () {
+					callback(YTPlayer);
+				});
+
+			jQuery(YTPlayer).on("YTPEnd", function () {
+				jQuery(YTPlayer).playPrev(); //Aidan changed this
+			});
+		},
 
 		playNext: function () {
 			var YTPlayer = this.get(0);
 			YTPlayer.videoCounter++;
-			if (YTPlayer.videoCounter >= YTPlayer.videoLength)
+			if (YTPlayer.videoCounter >= YTPlayer.videos.length) //Aidan changed this to not use videoLength
 				YTPlayer.videoCounter = 0;
 			jQuery(YTPlayer.playerEl).css({opacity: 0});
 			jQuery(YTPlayer).changeMovie(YTPlayer.videos[YTPlayer.videoCounter]);
@@ -648,7 +687,7 @@ function onYouTubePlayerAPIReady() {
 			var YTPlayer = this.get(0);
 			YTPlayer.videoCounter--;
 			if (YTPlayer.videoCounter < 0)
-				YTPlayer.videoCounter = YTPlayer.videoLength - 1;
+				YTPlayer.videoCounter = YTPlayer.videos.length - 1; //Aidan changed this to not use videoLength
 			jQuery(YTPlayer.playerEl).css({opacity: 0});
 			jQuery(YTPlayer).changeMovie(YTPlayer.videos[YTPlayer.videoCounter]);
 		},
@@ -1188,6 +1227,9 @@ function onYouTubePlayerAPIReady() {
 	jQuery.fn.playPrev = jQuery.mbYTPlayer.playPrev;
 	jQuery.fn.changeMovie = jQuery.mbYTPlayer.changeMovie;
 	jQuery.fn.getVideoData = jQuery.mbYTPlayer.getVideoData; //Aidan exposed this
+	jQuery.fn.getVideos = jQuery.mbYTPlayer.getVideos; //Aidan exposed this
+	jQuery.fn.setVideos = jQuery.mbYTPlayer.setVideos; //Aidan made this
+	jQuery.fn.setVideosIndex = jQuery.mbYTPlayer.setVideosIndex; //Aidan made this
 	jQuery.fn.getVideoID = jQuery.mbYTPlayer.getVideoID;
 	jQuery.fn.getPlayer = jQuery.mbYTPlayer.getPlayer;
 	jQuery.fn.playerDestroy = jQuery.mbYTPlayer.playerDestroy;
